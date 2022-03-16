@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import StatsCard from "./components/Stats/StatsCard";
+import UserCard from "./components/User/UserCard";
+
+import data from './assets/data/data.json' 
 
 function App() {
+
+  const [ sort, setSort ] = useState({})  
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <section className="dashboard-container">
+        <UserCard userName="Jeremy Robson" />
+        <section className="user-stats--container">
+          {
+            data.map((dataItem) => {
+              return (
+                <StatsCard key={dataItem.title} data={dataItem} />
+              )
+            })
+          }
+        </section>
+      </section>
+    </main>
   );
 }
 
